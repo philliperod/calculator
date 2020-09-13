@@ -16,16 +16,16 @@ app.post('/', (req, res) => {
   res.send('The result of this calculation is: ' + result);
 });
 
-app.get('/bmiCalculator', (req, res) => {
+app.get('/bmicalculator', (req, res) => {
   res.sendFile(__dirname + '/bmiCalculator.html');
 });
 
-app.post('/bmiCalculator', (req, res) => {
+app.post('/bmicalculator', (req, res) => {
   var weight = Number(req.body.weight);
   var height = Number(req.body.height);
-  var bmi = (weight / (height * height)) * 703;
+  var bmi = Math.floor(weight / Math.pow(height, 2));
 
-  res.send('Your BMI is: ' + bmi + ' kg/m^2.');
+  res.send('Your BMI is: ' + bmi + '.');
 });
 
 app.listen(3000, () => {
