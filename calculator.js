@@ -16,6 +16,18 @@ app.post('/', (req, res) => {
   res.send('The result of this calculation is: ' + result);
 });
 
+app.get('/bmiCalculator', (req, res) => {
+  res.sendFile(__dirname + '/bmiCalculator.html');
+});
+
+app.post('/bmiCalculator', (req, res) => {
+  var weight = Number(req.body.weight);
+  var height = Number(req.body.height);
+  var bmi = (weight / (height * height)) * 703;
+
+  res.send('Your BMI is: ' + bmi + ' kg/m^2.');
+});
+
 app.listen(3000, () => {
   console.log('Sending from port 3000.');
 });
